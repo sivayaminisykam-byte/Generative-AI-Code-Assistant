@@ -170,16 +170,18 @@ st.divider()
 # --------------------------------------------------
 # SIDEBAR
 # --------------------------------------------------
-
 with st.sidebar:
 
     st.header("⚙️ Project Settings")
 
-    api_key = st.text_input(
-        "Gemini API Key",
-        type="password",
-        placeholder="Enter your API key"
-    )
+    try:
+        api_key = st.secrets["GEMINI_API_KEY"]
+    except Exception:
+        api_key = st.text_input(
+            "Gemini API Key",
+            type="password",
+            placeholder="Enter your API key"
+        )
 
     language = st.selectbox(
         "💻 Programming Language",
@@ -203,7 +205,6 @@ with st.sidebar:
     st.write("☕ Java")
     st.write("©️ C")
     st.write("⚙️ C++")
-
 # --------------------------------------------------
 # CODE WORKSPACE
 # --------------------------------------------------
